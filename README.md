@@ -1,8 +1,10 @@
-# GET: http://127.0.0.1:8000/api/musicians/
+# Django Rest Framework Application
 
-# GET: http://127.0.0.1:8000/api/albums/
+GET: http://127.0.0.1:8000/api/musicians/
 
-# POST: http://127.0.0.1:8000/api/musicians/
+GET: http://127.0.0.1:8000/api/albums/
+
+POST: http://127.0.0.1:8000/api/musicians/
 
 Test Data :
 {
@@ -22,3 +24,6 @@ Test Data :
         }
     ]
 }
+
+admin: kuntal
+pass: 12345
