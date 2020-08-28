@@ -1,5 +1,6 @@
 from rest_framework import serializers, fields
 from .models import *
+from  drf_yasg import openapi
 
 
 # Noraml Relation
@@ -60,3 +61,15 @@ class MusicianSerializer(serializers.ModelSerializer):
             album.save()
         return instance
 
+
+class CreateUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'name', 'email']
+
+
+# demo response serializer
+class CreateUserResponseSerializers(serializers.Serializer):
+    id = serializers.IntegerField()
+    name = serializers.CharField()
+    email = serializers.EmailField()

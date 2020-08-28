@@ -6,6 +6,7 @@ GET: http://127.0.0.1:8000/api/albums/
 
 POST: http://127.0.0.1:8000/api/musicians/
 
+
 Test Data :
 {
     "first_name": "ganesh",
@@ -27,3 +28,18 @@ Test Data :
 
 admin: kuntal
 pass: 12345
+
+
+# Swagger
+http://127.0.0.1:8000/swagger/
+
+Note**: Perfer to use generics 
+
+# Ref Docs
+https://drf-yasg.readthedocs.io/en/stable
+
+# JWT 
+https://pypi.org/project/djangorestframework-simplejwt
+
+# JSON API
+https://pypi.org/project/djangorestframework-jsonapi/
