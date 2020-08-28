@@ -30,6 +30,17 @@ admin: kuntal
 pass: 12345
 
 
+# DRF Filtering 
+s1: s2: http://127.0.0.1:8000/api/search/
+
+s2: http://127.0.0.1:8000/api/search/Kuntal/
+
+s3: http://127.0.0.1:8000/api/search/?name=Kuntal
+
+s4: http://127.0.0.1:8000/api/filter/backend/?search=kun
+
+
+
 # Swagger
 http://127.0.0.1:8000/swagger/
 

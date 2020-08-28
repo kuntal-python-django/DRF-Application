@@ -8,6 +8,7 @@ from .models import *
 from .serializers import *
 # rest_framework
 from rest_framework import generics
+from rest_framework import filters
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -17,7 +18,7 @@ from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 
 
-
+# Get and Post
 class MusicianListView(generics.ListCreateAPIView):
     permission_classes = [AllowAny, ]
     # authentication_classes =[]  # to bypass security
@@ -25,10 +26,52 @@ class MusicianListView(generics.ListCreateAPIView):
     serializer_class = MusicianSerializer
 
 
+# Get and Post
 class AlbumListView(generics.ListCreateAPIView):
     permission_classes = [AllowAny, ]
     queryset = Album.objects.all()
     serializer_class = AlbumSerializer
+
+
+# data Filtering
+class FilterUserDemo1(generics.ListAPIView):
+    serializer_class = UserListingSerializer
+
+    # Filtering on know params
+    def get_queryset(self):
+        return User.objects.filter(name='kuntal')
+
+    
+class FilterUserDemo2(generics.ListAPIView):
+    serializer_class = UserListingSerializer
+
+    # Filtering on kwarg which we are getting from url
+    def get_queryset(self):
+        kwarg_url_value = self.kwargs['name']
+        return User.objects.filter(name=kwarg_url_value)
+    
+    
+class FilterUserDemo3(generics.ListAPIView):
+    serializer_class = UserListingSerializer
+    
+    # Filtering url query params
+    def get_queryset(self):
+        queryset = User.objects.all()
+        q_value = self.request.query_params.get('name', 'None')
+        if q_value is not None:
+            queryset = queryset.filter(name=q_value)
+        return queryset
+
+
+# drf search fields
+# patter match work here
+class FilterUserDemo4(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserListingSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name']
+
+
 
 
 # custom Request & Response in swagger

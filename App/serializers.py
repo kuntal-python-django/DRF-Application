@@ -73,3 +73,9 @@ class CreateUserResponseSerializers(serializers.Serializer):
     id = serializers.IntegerField()
     name = serializers.CharField()
     email = serializers.EmailField()
+
+
+class UserListingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'name', 'email']
