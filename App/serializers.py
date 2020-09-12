@@ -79,3 +79,24 @@ class UserListingSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'name', 'email']
+        
+
+
+
+""" 
+# to practise uncomment here
+
+from rest_framework import serializers, fields
+from .models import *
+
+
+# Noraml Relation
+class MusicianSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Musician
+        fields = ('id', 'first_name', 'last_name', 'instrument')
+
+"""
+
+
