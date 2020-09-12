@@ -30,3 +30,26 @@ class Album(models.Model):
 class User(models.Model):
     name = models.CharField(max_length=10)
     email = models.EmailField()
+
+
+
+
+
+
+
+"""
+# to practise uncomment here
+
+from __future__ import unicode_literals
+from django.db import models
+
+
+class Musician(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    instrument = models.CharField(max_length=100)
+
+    def __unicode__(self):
+        return self.first_name
+
+"""
