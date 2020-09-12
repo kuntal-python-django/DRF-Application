@@ -84,8 +84,6 @@ class UserListingSerializer(serializers.ModelSerializer):
 
 
 """ 
-# to practise uncomment here
-
 from rest_framework import serializers, fields
 from .models import *
 
@@ -95,7 +93,7 @@ class MusicianSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Musician
-        fields = ('id', 'first_name', 'last_name', 'instrument')
+        fields = ['id', 'first_name', 'last_name', 'instrument']
 
 """
 

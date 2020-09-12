@@ -31,11 +31,17 @@ from .views import *
 
 
 urlpatterns = [
-    
     path('api/musicians/', MusicianListView.as_view()),
+    path('api/musicians/get/', MusicianGETView.as_view()),
+    path('api/musicians/post/', MusicianPOSTView.as_view()),
+    path('api/musicians/find/<int:id>/', MusicianRetrieveAPIViewView.as_view()),
+    path('api/musicians/update/<int:id>/', MusicianUPDATEView.as_view()),
+    path('api/musicians/delete/<int:id>/', MusicianDeleteView.as_view()),
+
+
     path('api/musicians/search1/', FilterUserDemo1.as_view()),
-    path('api/musicians/search2/<str:first_name>/', FilterUserDemo2.as_view()),
-    path('api/musicians/search3/', FilterUserDemo3.as_view()),
+    path('api/musicians/search2/<str:first_name>/', FilterUserDemo2.as_view()),    
+    path('api/musicians/search3/', FilterUserDemo3.as_view()),    
     path('api/filter/backend/', FilterUserDemo4.as_view()),
 
 ]
