@@ -110,3 +110,68 @@ class CreateUSer(APIView):
 
 
 
+"""
+# to practise uncomment here
+
+from __future__ import unicode_literals
+from django.shortcuts import render
+from django.conf import settings
+from django.utils import timezone
+from datetime import datetime, timedelta
+from django.db.models import Q
+from .models import *
+from .serializers import *
+# rest_framework
+from rest_framework import generics
+from rest_framework import filters
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.views import APIView
+
+
+# Get and Post
+class MusicianListView(generics.ListCreateAPIView):
+    permission_classes = [AllowAny, ]
+    # authentication_classes =[]  # to bypass security
+    queryset = Musician.objects.all()
+    serializer_class = MusicianSerializer
+
+
+class FilterUserDemo1(generics.ListAPIView):
+    serializer_class = MusicianSerializer
+    # Filtering on know params
+    def get_queryset(self):
+        return Musician.objects.filter(first_name='Firstname 1')
+
+
+class FilterUserDemo2(generics.ListAPIView):
+    serializer_class = MusicianSerializer
+    # Filtering on kwarg which we are getting from url
+    def get_queryset(self):
+        kwarg_url_value = self.kwargs['first_name']
+        return Musician.objects.filter(first_name=kwarg_url_value)
+
+
+class FilterUserDemo3(generics.ListAPIView):
+    serializer_class = MusicianSerializer
+    # Filtering url query params
+    def get_queryset(self):
+        queryset = Musician.objects.all()
+        q_value = self.request.query_params.get('name', 'None')
+        if q_value is not None:
+            queryset = queryset.filter(first_name=q_value)
+        return queryset
+
+
+# drf search fields
+# patter match work here
+class FilterUserDemo4(generics.ListAPIView):
+    queryset = Musician.objects.all()
+    serializer_class = MusicianSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['first_name']
+
+
+
+"""
