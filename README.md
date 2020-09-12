@@ -54,3 +54,12 @@ https://pypi.org/project/djangorestframework-simplejwt
 
 # JSON API
 https://pypi.org/project/djangorestframework-jsonapi/
+
+
+
+# For testing uncomment code in views, models, urls, serialzer, the test below
+http://127.0.0.1:8000/api/musicians/
+http://127.0.0.1:8000/api/musicians/search1/
+http://127.0.0.1:8000/api/musicians/search2/kuntal/
+http://127.0.0.1:8000/api/musicians/search3/?name=kuntal
+http://127.0.0.1:8000/api/filter/backend/?search=ku
