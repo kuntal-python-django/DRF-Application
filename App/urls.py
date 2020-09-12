@@ -1,9 +1,16 @@
 from django.urls import path
-
 from .views import *
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+    TokenVerifyView
+)
 
 urlpatterns = [
-    
+    # Auth
+    path('api/token/', TokenObtainPairView.as_view()),
+    path('api/refresh/', TokenRefreshView.as_view()),
+    path('api/token/verify/', TokenVerifyView.as_view()),
     # swagger testing
     path('api/musicians/', MusicianListView.as_view()),
     path('api/albums/', AlbumListView.as_view()),
