@@ -35,9 +35,3 @@ class CreateUserDetails(generics.ListCreateAPIView):
     permission_classes = [AllowAny, ]
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
-
-class PostCommentView(generics.CreateAPIView):
-    permission_classes = [AllowAny, ]
-    queryset = Post.objects.all()
-    serializer_class = PostSerialzier
