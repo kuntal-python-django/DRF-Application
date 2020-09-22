@@ -42,7 +42,7 @@ class Tag(models.Model):
 
 class Post(models.Model):
     content = models.CharField(max_length=10)
-    tag = models.ManyToManyField(Tag, related_name='post_tag_realtion', blank=False, null=False)
+    tag = models.ManyToManyField(Tag, related_name='post_tag_realtion')
 
     def __str__(self):
         return self.content
