@@ -154,6 +154,10 @@ class MusicianListView(generics.ListCreateAPIView):
     queryset = Musician.objects.all()
     serializer_class = MusicianSerializer
 
+class StudentListView(generics.ListCreateAPIView):
+    permission_classes = [AllowAny, ]
+    queryset = Student.objects.all()
+    serializer_class = StudentSerialzers
 
 # Get and Post
 class AlbumListView(generics.ListCreateAPIView):

@@ -46,3 +46,26 @@ class Post(models.Model):
 
     def __str__(self):
         return self.content
+
+
+
+# -------------- ForeignKey ----------------
+class Student(models.Model):
+    name = models.CharField(max_length=10)
+    phone = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.name
+
+class School(models.Model):
+    name = models.CharField(max_length=10)
+    stu = models.ForeignKey(
+        Student,
+        on_delete=models.CASCADE,
+        related_name='school_student', 
+        null=True,
+        blank=True
+    )
+
+    def __str__(self):
+        return self.name

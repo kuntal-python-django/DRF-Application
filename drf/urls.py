@@ -24,6 +24,7 @@ urlpatterns = [
     path('api/filter4/', FilterUser4.as_view()),
 
     # FK realtion
+    path('api/students/', StudentListView.as_view()),
     path('api/musicians/', MusicianListView.as_view()),
     path('api/albums/', AlbumListView.as_view()),
 

@@ -14,6 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'email']
 
 
+
 # Nested Relation (FK)
 class AlbumSerializer(serializers.ModelSerializer):
     
@@ -68,3 +69,24 @@ class PostSerialzers(serializers.ModelSerializer):
         model = Post
         fields = ['content', 'tag']
         # depth = 1
+
+
+
+# -------------- ForeignKey ----------------
+class SchoolSerialzers(serializers.ModelSerializer):
+    class Meta:
+        model = School
+        fields = ['name', 'stu']
+
+class StudentSerialzers(serializers.ModelSerializer):
+    school_student = SchoolSerialzers(many=True)
+    class Meta:
+        model = Student
+        fields = ['name', 'phone', 'school_student']
+    
+    def create(self, validated_data):
+        school_student_data = validated_data.pop('school_student')
+        s = Student.objects.create(**validated_data)
+        for i in school_student_data:
+            School.objects.create(stu=s, **i)
+        return s
