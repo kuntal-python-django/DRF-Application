@@ -14,4 +14,5 @@ urlpatterns = [
     path(r'rest/', include('rest_framework.urls')),
     path('api/post/users/', UserCreateAPIView.as_view()),
     path('api/ud/', CreateUserDetails.as_view()),   #OneToOne
+    path('api/post/comment/', PostCommentView.as_view()),
 ]

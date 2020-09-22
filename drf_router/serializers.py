@@ -48,3 +48,32 @@ class UserSerializer(serializers.ModelSerializer):
         UserDetail.objects.create(user=user, **userdetail_data)
         return user
 
+
+
+# -------------------- ForeignKey ---------------------
+class CommentsSerialzier(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ['name']
+
+class PostSerialzier(serializers.ModelSerializer):
+    post = CommentsSerialzier()
+    class Meta:
+        model = Post
+        fields = ['content', 'post']
+
+    def create(self, validate_data):
+        post_data = validate_data.pop('post')
+        print("post_data : ", post_data)
+        post = Post.objects.create(**validate_data)
+        for key, value in post_data.items(): 
+            Comment.objects.create(name=value, post=post)
+        return post
+        
+        
+        
+         
+    
+
+
+
