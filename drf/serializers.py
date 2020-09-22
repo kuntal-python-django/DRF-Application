@@ -1,28 +1,20 @@
 from rest_framework import serializers, fields
 from .models import *
-from  drf_yasg import openapi
+
+# demo response serializer
+class CustomResponseSerializers(serializers.Serializer):
+    id = serializers.IntegerField()
+    name = serializers.CharField()
+    email = serializers.EmailField()
 
 
-# Noraml Relation
-'''
-class MusicianSerializer(serializers.ModelSerializer):
-
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Musician
-        fields = ('id', 'first_name', 'last_name', 'instrument')
+        model = User
+        fields = ['id', 'name', 'email']
 
 
-class AlbumSerializer(serializers.ModelSerializer):
-    artist = MusicianSerializer(read_only=True, many=False)
-    
-    class Meta:
-        model = Album
-        fields = ('id', 'artist', 'name', 'release_date', 'num_stars')
-'''
-
-
-# Nested Relation
-
+# Nested Relation (FK)
 class AlbumSerializer(serializers.ModelSerializer):
     
     class Meta:
@@ -62,39 +54,17 @@ class MusicianSerializer(serializers.ModelSerializer):
         return instance
 
 
-class CreateUserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['id', 'name', 'email']
-
-
-# demo response serializer
-class CreateUserResponseSerializers(serializers.Serializer):
-    id = serializers.IntegerField()
-    name = serializers.CharField()
-    email = serializers.EmailField()
-
-
-class UserListingSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['id', 'name', 'email']
-        
-
-
-
-""" 
-from rest_framework import serializers, fields
-from .models import *
-
-
-# Noraml Relation
-class MusicianSerializer(serializers.ModelSerializer):
+class TagSerialzers(serializers.ModelSerializer):
 
     class Meta:
-        model = Musician
-        fields = ['id', 'first_name', 'last_name', 'instrument']
-
-"""
+        model = Tag
+        fields = ['name']
 
 
+class PostSerialzers(serializers.ModelSerializer):
+    tag = TagSerialzers(read_only=True, many=True)  # not required if using depth
+
+    class Meta:
+        model = Post
+        fields = ['content', 'tag']
+        # depth = 1
