@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 from django.db.models import Q
 from .models import *
 from .serializers import *
+from django.core.cache import cache #cache
 # rest_framework
 from rest_framework import generics
 from rest_framework import filters
