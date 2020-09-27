@@ -8,6 +8,7 @@ django-cors-headers==3.5.0
 djangorestframework==3.11.1
 djangorestframework-simplejwt==4.4.0
 drf-yasg==1.17.1
+httpagentparser==1.9.0
 idna==2.10
 inflection==0.5.1
 itypes==1.2.0

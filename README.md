@@ -1,11 +1,26 @@
 # Django Authenticate
+
 ```
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 user = authenticate(username='john', password='secret')
 if user is not None:
-    # A backend authenticated the credentials
+        login(request, user)
+        # Redirect to a success page.
 else:
-    # No backend authenticated the credentials
+    # Return an 'invalid login' error message.
+```
+
+```
+from django.contrib.auth import logout
+def logout_view(request):
+    logout(request)
+```
+
+```
+if request.user.is_authenticated:
+    # Do something for authenticated users
+else:
+    # Do something for anonymous users
 ```
 
 ```
@@ -14,6 +29,24 @@ from django.contrib.auth.hashers import check_password
 
 check_password(password, u.password)
 ```
+
+# Next Path in URL
+```
+from django.conf import settings
+from django.shortcuts import redirect
+def my_view(request):
+    if not request.user.is_authenticated:
+        return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
+```
+
+# Loging Using Django Decorator
+```
+from django.contrib.auth.decorators import login_required
+@login_required(login_url='/accounts/login/')
+def my_view(request):
+    pass
+```
+
 
 # Django
 ```
@@ -59,7 +92,6 @@ python manage.py createcachetable
 https://medium.com/@renjithsraj/how-to-reset-password-in-django-bd5e1d6ed652
 
 ```
-accounts/ login/ [name='login']
 accounts/ logout/ [name='logout']
 accounts/ password_change/ [name='password_change']
 accounts/ password_change/done/ [name='password_change_done']
@@ -68,6 +100,11 @@ accounts/ password_reset/done/ [name='password_reset_done']
 accounts/ reset/<uidb64>/<token>/ [name='password_reset_confirm']
 accounts/ reset/done/ [name='password_reset_complete']
 admin/
+```
+
+# IP & Browser Detect
+```
+pip install httpagentparser
 ```
 
 # Swagger
