@@ -178,7 +178,6 @@ SIMPLE_JWT = {
 }
 
 
-
 # python manage.py createcachetable
 CACHES = {
     'default': {
@@ -187,14 +186,24 @@ CACHES = {
     }
 }
 
+'''
+# https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-18-04
+CACHES = {
+    'default': {
+        'BACKEND': 'redis_cache.RedisCache',
+        'LOCATION': 'localhost:6379',
+    },
+}'''
+
+
 
 """ Email Setup """
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 '''
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # for smtp service
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'mail@mail.com'
-EMAIL_HOST_PASSWORD = 'mailpassword'
+EMAIL_HOST_USER = 'mymail@mail.com'
+EMAIL_HOST_PASSWORD = '*****'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_PORT = 587

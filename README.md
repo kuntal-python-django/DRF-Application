@@ -48,7 +48,7 @@ def my_view(request):
 ```
 
 
-# Django
+# Django Paginator
 ```
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 post = Post.objects.all()
@@ -87,6 +87,42 @@ CACHES = {
 
 python manage.py createcachetable
 ```
+
+```
+Redis Cache
+https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-18-04
+
+>>> pip install django-redis-cache
+```
+
+
+# Django Message Framework
+```
+from django.contrib import messages
+from django.contrib.messages import get_messages
+
+messages.debug(request, '%s SQL statements were executed.' % count)
+messages.info(request, 'Three credits remain in your account.')
+messages.success(request, 'Profile details updated.')
+messages.warning(request, 'Your account expires in three days.')
+messages.error(request, 'Document deleted.')
+
+HTML Side Code
+{% if messages %}
+<ul>
+   {% for message in messages %}
+	   <li>{{ message }}</li>
+   {% endfor %}
+</ul>
+{% endif %}
+
+
+Outside of templates
+storage = get_messages(request)
+for message in storage:
+    print(message)
+```
+
 
 # Django Admin Customize
 https://medium.com/@renjithsraj/how-to-reset-password-in-django-bd5e1d6ed652
