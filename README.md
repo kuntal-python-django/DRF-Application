@@ -1,21 +1,101 @@
-# Swagger
-http://127.0.0.1:8000/swagger/
+# Django Authenticate
+```
+from django.contrib.auth import authenticate
+user = authenticate(username='john', password='secret')
+if user is not None:
+    # A backend authenticated the credentials
+else:
+    # No backend authenticated the credentials
+```
+
+```
+from django.contrib.auth.models import User
+from django.contrib.auth.hashers import check_password
+
+check_password(password, u.password)
+```
+
+# Django
+```
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+post = Post.objects.all()
+paginator = Paginator(post, 10)
+try:
+    page = request.GET.get('page', 1)
+    post_list = paginator.page(page)
+except PageNotAnInteger:
+    post_list = paginator.page(1)
+except EmptyPage:
+    post_list = paginator.page(paginator.num_pages)
+
+HTML Side Code
+<p align="center">
+{% if post_list.has_other_pages %}
+{% if post_list.has_previous %}
+<a href="?page={{ post_list.previous_page_number }}" class="w3-button w3-black w3-padding-large w3-margin-bottom">Previous</a>
+{% endif %}
+&nbsp;&nbsp;&nbsp;&nbsp;
+{% if post_list.has_next %}
+<a href="?page={{ post_list.next_page_number }}" class="w3-button w3-black w3-padding-large w3-margin-bottom">Next</a>
+{% endif %}
+{% endif %}
+</p>
+```
+
 
 # Django Cache
-python manage.py createcachetable
+```
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'my_cache_table',
+    }
+}
 
-Note**: Perfer to use generics 
+python manage.py createcachetable
+```
+
+# Django Admin Customize
+https://medium.com/@renjithsraj/how-to-reset-password-in-django-bd5e1d6ed652
+
+```
+accounts/ login/ [name='login']
+accounts/ logout/ [name='logout']
+accounts/ password_change/ [name='password_change']
+accounts/ password_change/done/ [name='password_change_done']
+accounts/ password_reset/ [name='password_reset']
+accounts/ password_reset/done/ [name='password_reset_done']
+accounts/ reset/<uidb64>/<token>/ [name='password_reset_confirm']
+accounts/ reset/done/ [name='password_reset_complete']
+admin/
+```
+
+# Swagger
+```
+http://127.0.0.1:8000/swagger/
+```
 
 # Ref Docs
+```
 https://drf-yasg.readthedocs.io/en/stable
 
+swagger(?P<format>\.json|\.yaml) [name='schema-json']
+swagger/ [name='schema-swagger-ui']
+redoc/ [name='schema-redoc']
+```
+
+
 # JWT 
+```
 https://pypi.org/project/djangorestframework-simplejwt
+```
 
 # JSON API
+```
 https://pypi.org/project/djangorestframework-jsonapi/
+```
 
-
+```
 HTTP_200_OK
 HTTP_201_CREATED
 HTTP_202_ACCEPTED
@@ -78,3 +158,5 @@ HTTP_510_NOT_EXTENDED
 HTTP_511_NETWORK_AUTHENTICATION_REQUIRED
 
 https://www.django-rest-framework.org/api-guide/status-codes/
+```
+
